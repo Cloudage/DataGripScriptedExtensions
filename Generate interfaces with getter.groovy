@@ -15,8 +15,8 @@ typeMapping = [
         (~/(?i)float|double|decimal|real/): "Double",
         (~/(?i)numeric|decimal/)          : "java.math.BigDecimal",
         (~/(?i)datetime|timestamp/)       : "java.util.Date",
-        (~/(?i)date/)                     : "java.util.Date",
-        (~/(?i)time/)                     : "java.util.Date",
+        (~/(?i)date/)                     : "java.sql.Date",
+        (~/(?i)time/)                     : "java.sql.Date",
         (~/(?i)boolean/)                  : "Boolean",
         (~/(?i)/)                         : "String"
 ]
@@ -47,7 +47,6 @@ def generate(out, dir, table, className, interfaceSuffix, fields) {
     def packageName = dir.toString().find(/\/src\/main\/java\/(.*)/).substring(15).replace("/",".")
 
     out.println "package $packageName;"
-    out.println "import java.util.Date;"
     out.println ""
     out.println ""
     out.println "/** $tableComment */"
