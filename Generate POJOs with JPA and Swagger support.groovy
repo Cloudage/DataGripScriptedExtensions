@@ -11,7 +11,8 @@ import com.intellij.database.util.DasUtil
 
 typeMapping = [
   (~/(?i)int/)                      : "Integer",
-  (~/(?i)float|double|decimal|real|numeric/): "Double",
+  (~/(?i)float|double|decimal|real/): "Double",
+  (~/(?i)numeric|decimal/)          : "java.math.BigDecimal",
   (~/(?i)datetime|timestamp/)       : "java.util.Date",
   (~/(?i)date/)                     : "java.util.Date",
   (~/(?i)time/)                     : "java.util.Date",
