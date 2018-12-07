@@ -56,7 +56,7 @@ def generate(out, dir, table, className, fields) {
       out.println "  @ApiModelProperty(\"${it.comment}\")"
     }
 
-    if(it.column == "id") out.println "  @Id"
+    if(it.isId) out.println "  @Id"
 
     out.println "  @Column(name = \"${it.column}\")"
     out.println "  private ${it.type} ${it.name};"
@@ -97,7 +97,8 @@ def calcFields(table) {
                  name : javaName(col.getName(), false),
                  column : col.getName(),
                  type : typeStr,
-                 comment: col.getComment()]]
+                 comment: col.getComment(),
+                 isId: DasUtil.isPrimary(col)]]
   }
 }
 
