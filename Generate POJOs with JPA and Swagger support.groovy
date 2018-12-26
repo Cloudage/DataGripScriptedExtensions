@@ -56,7 +56,11 @@ def generate(out, dir, table, className, fields) {
       out.println "  @ApiModelProperty(\"${it.comment}\")"
     }
 
-    if(it.isId) out.println "  @Id"
+    if(it.isId) {
+      out.println "  @Id"
+      out.println "  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = \"${tableName}_seq_gen\")"
+      out.println "  @SequenceGenerator(name = \"${tableName}_seq_gen\", sequenceName = \"${tableName}_id_seq\")"
+    }
 
     out.println "  @Column(name = \"${it.column}\")"
     out.println "  private ${it.type} ${it.name};"
